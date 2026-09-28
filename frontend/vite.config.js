@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // Base path for GitHub Pages
+  base: '/jana_ai_projects_2026/',
   plugins: [react()],
   server: {
     proxy: {
