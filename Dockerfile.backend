@@ -1,0 +1,24 @@
+# ── Backend Dockerfile (FastAPI) ──────────────────────────────────────────────
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies
+RUN pip install --no-cache-dir \
+    fastapi==0.115.0 \
+    uvicorn[standard]==0.30.6 \
+    joblib==1.4.2 \
+    pandas==2.2.3 \
+    scikit-learn==1.5.2 \
+    pydantic==2.9.2
+
+# Copy model and API
+COPY churn_model.joblib .
+COPY api_15.py .
+
+# Expose port
+EXPOSE 8000
+
+# Run the API
+CMD ["uvicorn", "api_15:app", "--host", "0.0.0.0", "--port", "8000"]
